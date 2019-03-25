@@ -1,0 +1,47 @@
+version: "3"
+
+services:
+
+  #networks:
+  #  neo4j-network:
+  #  driver: bridge
+
+  neo4j:
+    image: neo4j:latest
+    #networks:
+      #- neo4j-network
+    volumes:
+      - ./db/dbms:/data/dbms
+    ports:
+    - '7474:7474'
+    - '7473:7473'
+    - '7687:7687'
+    #environment:
+      #NEO4J_AUTH: neo4j:neo
+    expose:
+      - '7474'
+      - '7687'
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    hostname: zookeeper
+    ports:
+      - '2181:2181'
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  broker:
+    image: confluentinc/cp-kafka:latest
+    hostname: broker
+    depends_on:
+      - zookeeper
+    ports:
+      - '19092:9092'
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_ADVERTISED_LISTENERS: LISTENER_IN://broker:9092, LISTENER_OUT://localhost:19092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_IN:PLAINTEXT,LISTENER_OUT:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_IN
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 1
