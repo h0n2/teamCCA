@@ -1,5 +1,3 @@
-Source: https://github.com/vkorukanti/spark-docker-compose
-
 # Docker compose for spawning on demand HDFS and Spark clusters
 
 # Build the required Docker images
