@@ -3,10 +3,18 @@ Source: https://github.com/vkorukanti/spark-docker-compose
 # Docker compose for spawning on demand HDFS and Spark clusters
 
 # Build the required Docker images
+## Spark Image
 `docker build -t hadoop-spark ./hadoop-spark/`
+
+## Namenode
 `docker build -t hdfs-namenode ./hdfs-namenode/`
+## DataNode
 `docker build -t hdfs-datanode ./hdfs-datanode/`
+
+##Spark-Master
 `docker build -t spark-master ./spark-master/`
+
+## Spark-Slave
 `docker build -t spark-slave ./spark-slave/`
 
 # Run the cluster
