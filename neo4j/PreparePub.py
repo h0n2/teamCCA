@@ -197,7 +197,7 @@ def getPopularPublicationsByCitation(top):
     query = '''
         MATCH p=(Paper)-[r:AUTHORED]->(m)
         RETURN DISTINCT(m)
-        ORDER BY p.citation DESC, p.year DESC LIMIT {top}
+        ORDER BY m.citation DESC, m.year DESC LIMIT {top}
         '''
     res = graph.run(query, top=top)
     print(res)

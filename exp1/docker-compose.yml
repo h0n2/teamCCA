@@ -1,0 +1,22 @@
+version: "3"
+
+networks:
+  lan:
+
+services:
+  neo4j:
+   image: neo4j:latest       ## image: neo4j:3.5.2         ## we use neo4j v3
+   ports:                    ## publish ports to have Web UI
+   - "17474:7474"
+   - "17687:7687" # Bolt
+   volumes:                  ## adds folder with login/password
+     - ./db/dbms:/data/dbms1
+   environment:
+      - NEO4J_HEAP_MEMORY=2048
+      - NEO4J_CACHE_MEMORY=1G
+      - NEO4J_AUTH=neo4j/neo
+      - NEO4J_dbms_mode=CORE
+      - NEO4J_ACCEPT_LICENSE_AGREEMENT=yes 
+      - NEO4J_dbms_connector_http_listen__address=:7474
+      - NEO4J_dbms_connector_https_listen__address=:6477
+      - NEO4J_dbms_connector_bolt_listen__address=:7687
