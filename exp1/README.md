@@ -9,7 +9,7 @@
 ## DataNode
 `docker build -t hdfs-datanode ./hdfs-datanode/`
 
-##Spark-Master
+## Spark-Master
 `docker build -t spark-master ./spark-master/`
 
 ## Spark-Slave
