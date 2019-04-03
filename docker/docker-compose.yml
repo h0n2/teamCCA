@@ -52,7 +52,7 @@ services:
       #KAFKA_DEFAULT_REPLICATION_FACTOR: 1
 
   sparkMaster:
-    image: mesosphere/spark:latest
+    image: gettyimages/spark:latest
     command: ./bin/spark-class org.apache.spark.deploy.master.Master -i spark-master
     hostname: 'spark-master'
     container_name: 'spark-master'
@@ -61,26 +61,25 @@ services:
     - 7077
     volumes:
     - ./spark/spark-master:/opt/spark/dist/logs/
-    - ./spark/data:/opt/spark/dist/data
+    - ./spark/data:/opt/spark/data/
+    - ./spark/code:/opt/spark/code/
     ports:
     - '7077:7077'
     - '8080:8080'
     environment:
       SERVICE_NAME: "spark-master"
       SPARK_USER: "root"
-      #SPARK_MASTER_OPTS: "-Dspark.driver.port=7001 -Dspark.fileserver.port=7002 -Dspark.broadcast.port=7003 -Dspark.replClassServer.port=7004 -Dspark.blockManager.port=7005 -Dspark.executor.port=7006 -Dspark.ui.port=4040 -Dspark.broadcast.factory=org.apache.spark.broadcast.HttpBroadcastFactory"
       SPARK_MASTER_PORT: 7077
       SPARK_MASTER_WEBUI_PORT: 8080
 
   sparkWorker:
-      image: mesosphere/spark:latest
+      image: gettyimages/spark:latest
       command: ./bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
       hostname: "spark-worker"
       container_name: "spark-worker"
       environment:
         SERVICE_NAME: "spark-worker"
         SPARK_USER: "root"
-        #SPARK_WORKER_OPTS: "-Dspark.driver.port=7001 -Dspark.fileserver.port=7002 -Dspark.broadcast.port=7003 -Dspark.replClassServer.port=7004 -Dspark.blockManager.port=7005 -Dspark.executor.port=7006 -Dspark.ui.port=4040 -Dspark.broadcast.factory=org.apache.spark.broadcast.HttpBroadcastFactory"
         SPARK_WORKER_PORT: 8888
         SPARK_WORKER_WEBUI_PORT: 8081
       expose:
@@ -90,6 +89,7 @@ services:
       - sparkMaster
       volumes:
       - ./spark/spark-worker:/opt/spark/dist/logs/
-      - ./spark/data:/data
+      - ./spark/data:/opt/spark/data/
+      - ./spark/code:/opt/spark/code/
       ports:
       - '8081:8081'
