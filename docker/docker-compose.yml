@@ -18,6 +18,7 @@ services:
     - '7687:7687'
     #environment:
       #NEO4J_AUTH: neo4j:neo
+      #dbms_connectors_default__advertised__address: neo4jdb
     expose:
       - '7474'
       - '7687'
@@ -71,6 +72,10 @@ services:
       SPARK_USER: "root"
       SPARK_MASTER_PORT: 7077
       SPARK_MASTER_WEBUI_PORT: 8080
+    links:
+    - neo4j
+    - zookeeper
+    - broker
 
   sparkWorker:
       image: gettyimages/spark:latest
@@ -87,6 +92,9 @@ services:
       - 8081
       links:
       - sparkMaster
+      - neo4j
+      - zookeeper
+      - broker
       volumes:
       - ./spark/spark-worker:/opt/spark/dist/logs/
       - ./spark/data:/opt/spark/data/
