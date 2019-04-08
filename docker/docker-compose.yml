@@ -2,12 +2,9 @@ version: "3"
 
 services:
 
-  #networks:
-  #  neo4j-network:
-  #  driver: bridge
-
   neo4j:
     image: neo4j:latest
+    env_file: neoEnv.env
     #networks:
       #- neo4j-network
     volumes:
@@ -16,9 +13,6 @@ services:
     - '7474:7474'
     - '7473:7473'
     - '7687:7687'
-    #environment:
-      #NEO4J_AUTH: neo4j:neo
-      #dbms_connectors_default__advertised__address: neo4jdb
     expose:
       - '7474'
       - '7687'
