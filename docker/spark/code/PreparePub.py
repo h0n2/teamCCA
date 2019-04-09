@@ -26,6 +26,7 @@ def _createPublisher(id, title, year, lang, citation, url ):
         pbNode = matcher.match("Paper", id=id).first()
         if pbNode == None:
             pbNode = Node('Paper',name=title, id=id, year=year, lang=lang, citation=citation, url=str(url))
+            #pbNode.labels.add(title)
             graph.create(pbNode)
         else:
             print('update:' + str(citation))
@@ -50,8 +51,15 @@ def _createAuthor(pub, names):
     for auth in names:
         matcher = NodeMatcher(graph)
         aNode = matcher.match("Author", name=auth['name']).first()
+        try:
+            org = auth['org']
+        except KeyError:
+            org = ''
         if aNode is None:
-            aNode = Node('Author', name=auth['name'])
+            if org == '':
+                aNode = Node('Author', name=auth['name'])
+            else:
+                aNode = Node('Author', name=auth['name'], org=org)
             path_1 = Path(aNode, 'AUTHORED', pub)
             graph.create(path_1)
         else:
