@@ -20,4 +20,4 @@ class CORSRequestHandler(SimpleHTTPRequestHandler):
         self.end_headers()
 
 if __name__ == '__main__':
-    HTTPServer(('0.0.0.0', 8001), CORSRequestHandler).serve_forever()
+    HTTPServer(('0.0.0.0', 18001), CORSRequestHandler).serve_forever()

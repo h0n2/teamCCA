@@ -1,4 +1,4 @@
-#Team30 Project LeCloud
+# Team30 Project LeCloud
 
 ## Run the cluster ( Playaround with Docker Compose)
 Note: Run below commands from the directory where docker-compose.yml file is present.
@@ -56,7 +56,7 @@ d.  Visualization:
        python http-server.py
     ```
     This will be running againist localhost:8081 port pointing to guide folder
-    (Check) Try to navigate http://localhost:8081/AMiner.html
+    (Check) Try to navigate http://localhost:18001/AMiner.html
 
     
 
@@ -65,7 +65,7 @@ d.  Visualization:
         OR
         run this code in the query window 
         ```
-            play: http://localhost:8081/AMiner.html    
+            play: http://localhost:18001/AMiner.html    
 
         ```
 ```

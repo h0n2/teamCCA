@@ -1,3 +1,5 @@
+#  Core Kafka Consumer for consuming Kafka messages, integrating with Neo4j
+#  Authored: hcwong2@illinois.edu, manaskm2@illinois.edu, fmc2@illinois.edu, skusuma3@illinois.edu
 
 from __future__ import print_function
 

@@ -1,3 +1,6 @@
+#  Core Kafka Producer script for generating the Messages
+#  Authored: hcwong2@illinois.edu, manaskm2@illinois.edu, fmc2@illinois.edu, skusuma3@illinois.edu
+
 from kafka import KafkaProducer
 import time
 import json

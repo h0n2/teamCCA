@@ -1,3 +1,6 @@
+#  Docker-compose for integrating different images, Neo4j, Kafka Broker, Zookeeper, Spark Master and Worker Node
+#  Authored: hcwong2@illinois.edu, manaskm2@illinois.edu, fmc2@illinois.edu, skusuma3@illinois.edu
+
 version: "3"
 
 services:

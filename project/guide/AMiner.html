@@ -1,3 +1,8 @@
+<!--
+  Neo4j Browser Guide layout for displaying required usecases and walkthrough
+  Authored: hcwong2@illinois.edu, manaskm2@illinois.edu, fmc2@illinois.edu, skusuma3@illinois.edu
+-->
+
 <style type="text/css" media="screen">
   /*
 .nodes-image {
@@ -63,30 +68,46 @@
             </div>
           </div>
           <div class="paragraph">
-              The Open Academic Graph dataset is one of the largest academic graphs linking Microsoft Academic Graph (MAG) and AMiner.   Using the Open Academic Graph (OAG), one can then perform expanded searches on research publications using meta-data such as keywords, authors and synopsis.   The OAG consists of 3 major datasets:  Linking Relations, AMiner and MAG.  The 2017 version of the dataset is over 143 GBs.   Extracting and processing these datasets to construct publication graph via traditional ETL methods is inefficient. Our effort is to construct an effective graph processing pipeline using the latest distributed processing technologies such as Spark and Ne04j
+            The Open Academic Graph dataset is one of the largest academic graphs linking Microsoft Academic Graph (MAG) and AMiner.
+            Using the Open Academic Graph (OAG), one can then perform expanded searches on research publications using meta-data
+            such as keywords, authors and synopsis. The OAG consists of 3 major datasets: Linking Relations, AMiner and MAG.
+            The 2017 version of the dataset is over 143 GBs. Extracting and processing these datasets to construct publication
+            graph via traditional ETL methods is inefficient. Our effort is to construct an effective graph processing pipeline
+            using the latest distributed processing technologies such as Spark and Ne04j
           </div>
           <div class="paragraph">
-            <p>We want to demonstrate how easy it is to model a domain as a graph and draw answers with simple Cypher
-              Query Language</p>
+            <p>We want to demonstrate how easy it is to model a domain as a graph and draw answers with simple Cypher Query
+              Language</p>
           </div>
           <div class="paragraph">
-            <p>Graph Based Search and Discovery is prominent a use-case for graph databases like <a
-                href="http://neo4j.com">Neo4j</a>.</p>
+            <p>Graph Based Search and Discovery is prominent a use-case for graph databases like <a href="http://neo4j.com">Neo4j</a>.</p>
           </div>
           <div class="paragraph">
             <p>Here we use a Domain of Published Papers from AMiner/Microsoft Open Graph</p>
           </div>
           <div class="paragraph">
-            <p>The domain diagram was created by students of UIUC part of project and source code available at <a
-                href="https://github.com/h0n2/teamCCA">Project LeCloud</a></p>
+            <p>The domain diagram was created by students of UIUC part of project and source code available at <a href="https://github.com/h0n2/teamCCA">Project
+                LeCloud</a></p>
             <p><b>Contributors:</b>
               <table>
-                <tr><td>Han-Chiat, Wong</td><td> - hcwong2@illinois.edu</td></tr>
-                <tr><td>Manas Kumar, Mukherjee</td><td> - manaskm2@illinois.edu</td></tr>
-                <tr><td>Paco, Cruz Morales</td><td> - fmc2@illinois.edu</td></tr>
-                <tr><td>Sudheer Kumar, Kusuma</td><td> - skusuma3@illinois.edu</td></tr>
+                <tr>
+                  <td>Han-Chiat, Wong</td>
+                  <td> - hcwong2@illinois.edu</td>
+                </tr>
+                <tr>
+                  <td>Manas Kumar, Mukherjee</td>
+                  <td> - manaskm2@illinois.edu</td>
+                </tr>
+                <tr>
+                  <td>Paco, Cruz Morales</td>
+                  <td> - fmc2@illinois.edu</td>
+                </tr>
+                <tr>
+                  <td>Sudheer Kumar, Kusuma</td>
+                  <td> - skusuma3@illinois.edu</td>
+                </tr>
               </table>
-                </p>
+            </p>
           </div>
         </div>
       </div>
@@ -125,8 +146,7 @@ create (sushi:Cuisine {name:"Sushi"}), (nyc:City {name:"New York"}),
           <h4>Types of Nodes</h4>
           <div class="listingblock">
             <div class="content">
-              <pre mode="cypher"
-                class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH (n) RETURN DISTINCT labels(n), count(*) AS SampleSize,
+              <pre mode="cypher" class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH (n) RETURN DISTINCT labels(n), count(*) AS SampleSize,
                   avg(size(keys(n))) as Avg_PropertyCount,
                   max(size(keys(n))) as Max_PropertyCount,
                   avg(size( (n)-[]-() ) ) as Avg_RelationshipCount,
@@ -137,31 +157,28 @@ create (sushi:Cuisine {name:"Sushi"}), (nyc:City {name:"New York"}),
           <h4>Types of Relationships</h4>
           <div class="listingblock">
             <div class="content">
-              <pre mode="cypher"
-                class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">CALL db.relationshipTypes()</code></pre>
+              <pre mode="cypher" class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">CALL db.relationshipTypes()</code></pre>
             </div>
           </div>
 
           <h4>Count of Relationships</h4>
           <div class="listingblock">
             <div class="content">
-              <pre mode="cypher"
-                class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH (n)-[r]-(x) RETURN type(r), count(*)</code></pre>
+              <pre mode="cypher" class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH (n)-[r]-(x) RETURN type(r), count(*)</code></pre>
             </div>
           </div>
 
           <h4>Count of Papers by Lang</h4>
           <div class="listingblock">
             <div class="content">
-              <pre mode="cypher"
-                class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH (p:Paper)<-[r:AUTHORED]-() RETURN p.year as year, p.lang, COUNT(p.lang) as frequency ORDER BY year DESC</code></pre>
+              <pre mode="cypher" class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH (p:Paper)<-[r:AUTHORED]-() RETURN p.year as year, p.lang, COUNT(p.lang) as frequency ORDER BY year DESC</code></pre>
             </div>
           </div>
 
         </div>
       </div>
     </slide>
-    
+
 
     <slide class="row-fluid">
       <div class="col-sm-12">
@@ -171,30 +188,26 @@ create (sushi:Cuisine {name:"Sushi"}), (nyc:City {name:"New York"}),
           <h4>AUTHORED based</h4>
           <div class="listingblock">
             <div class="content">
-              <pre mode="cypher"
-                class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH p=()-[r:AUTHORED]->() RETURN p LIMIT 10</code></pre>
+              <pre mode="cypher" class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH p=()-[r:AUTHORED]->() RETURN p LIMIT 10</code></pre>
             </div>
           </div>
           <h4>Specific Author: Michele Scquizzato</h4>
           <div class="listingblock">
             <div class="content">
-              <pre mode="cypher"
-                class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH p=(Author {name:"Michele Scquizzato"})-[r:AUTHORED]->() RETURN p LIMIT 10</code></pre>
+              <pre mode="cypher" class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH p=(Author {name:"Michele Scquizzato"})-[r:AUTHORED]->() RETURN p LIMIT 10</code></pre>
             </div>
           </div>
 
           <h4>CONTAINS based</h4>
           <div class="listingblock">
             <div class="content">
-              <pre mode="cypher"
-                class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH p=()-[r:CONTAINS]->() RETURN p LIMIT 25</code></pre>
+              <pre mode="cypher" class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH p=()-[r:CONTAINS]->() RETURN p LIMIT 25</code></pre>
             </div>
           </div>
           <h4>REFERENCE based</h4>
           <div class="listingblock">
             <div class="content">
-              <pre mode="cypher"
-                class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH p=()-[r:REFERENCE]->() RETURN p LIMIT 25</code></pre>
+              <pre mode="cypher" class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH p=()-[r:REFERENCE]->() RETURN p LIMIT 25</code></pre>
             </div>
           </div>
 
@@ -213,8 +226,7 @@ create (sushi:Cuisine {name:"Sushi"}), (nyc:City {name:"New York"}),
           <h4>Most Authored</h4>
           <div class="listingblock">
             <div class="content">
-              <pre mode="cypher"
-                class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH p=(Paper)-[r:AUTHORED]->(m) RETURN m,COUNT(m) ORDER BY COUNT(m) DESC LIMIT 25</code></pre>
+              <pre mode="cypher" class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH p=(Paper)-[r:AUTHORED]->(m) RETURN m,COUNT(m) ORDER BY COUNT(m) DESC LIMIT 25</code></pre>
             </div>
           </div>
         </div>
@@ -223,11 +235,20 @@ create (sushi:Cuisine {name:"Sushi"}), (nyc:City {name:"New York"}),
           <h4>Most Referenced</h4>
           <div class="listingblock">
             <div class="content">
-              <pre mode="cypher"
-                class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH p=(Paper)-[r:REFERENCE]->(m) RETURN m,COUNT(m) ORDER BY COUNT(m) DESC LIMIT 25 </code></pre>
+              <pre mode="cypher" class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH p=(Paper)-[r:REFERENCE]->(m) RETURN m,COUNT(m) ORDER BY COUNT(m) DESC LIMIT 25 </code></pre>
             </div>
           </div>
         </div>
+
+        <div>
+          <h4>Popular Paper by Citation</h4>
+          <div class="listingblock">
+            <div class="content">
+              <pre mode="cypher" class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH p=(Paper)-[r:AUTHORED]->(m) RETURN DISTINCT(m) ORDER BY m.citation DESC, m.year DESC LIMIT 25 </code></pre>
+            </div>
+          </div>
+        </div>
+
 
       </div>
     </slide>
@@ -242,8 +263,7 @@ create (sushi:Cuisine {name:"Sushi"}), (nyc:City {name:"New York"}),
           <h4>Popular Papers by Author</h4>
           <div class="listingblock">
             <div class="content">
-              <pre mode="cypher"
-                class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH a=(Author {name:"Michele Scquizzato"})-[r:AUTHORED]->(p:Paper) RETURN p  ORDER BY p.year DESC LIMIT 25</code></pre>
+              <pre mode="cypher" class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH a=(Author {name:"Michele Scquizzato"})-[r:AUTHORED]->(p:Paper) RETURN p  ORDER BY p.year DESC LIMIT 25</code></pre>
             </div>
           </div>
         </div>
@@ -252,8 +272,7 @@ create (sushi:Cuisine {name:"Sushi"}), (nyc:City {name:"New York"}),
           <h4>Latest Papers by Author</h4>
           <div class="listingblock">
             <div class="content">
-              <pre mode="cypher"
-                class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH a=(Author {name:"Michele Scquizzato"})-[r:AUTHORED]->(p:Paper) RETURN p  ORDER BY p.year DESC LIMIT 25</code></pre>
+              <pre mode="cypher" class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH a=(Author {name:"Michele Scquizzato"})-[r:AUTHORED]->(p:Paper) RETURN p  ORDER BY p.year DESC LIMIT 25</code></pre>
             </div>
           </div>
         </div>
@@ -270,8 +289,7 @@ create (sushi:Cuisine {name:"Sushi"}), (nyc:City {name:"New York"}),
           <h4>Contains: Computational Modeling</h4>
           <div class="listingblock">
             <div class="content">
-              <pre mode="cypher"
-                class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH p=()-[r:CONTAINS]->(k) WHERE k.name="computational modeling" RETURN p,r,k LIMIT 25</code></pre>
+              <pre mode="cypher" class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH p=()-[r:CONTAINS]->(k) WHERE k.name="computational modeling" RETURN p,r,k LIMIT 25</code></pre>
             </div>
           </div>
         </div>
@@ -280,8 +298,7 @@ create (sushi:Cuisine {name:"Sushi"}), (nyc:City {name:"New York"}),
           <h4>By Keywords</h4>
           <div class="listingblock">
             <div class="content">
-              <pre mode="cypher"
-                class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH (p:Paper)-[r:CONTAINS]->(n:Keywords) RETURN n.name, Count(n.name) ORDER BY Count(n.name) DESC LIMIT 25</code></pre>
+              <pre mode="cypher" class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH (p:Paper)-[r:CONTAINS]->(n:Keywords) RETURN n.name, Count(n.name) ORDER BY Count(n.name) DESC LIMIT 25</code></pre>
             </div>
           </div>
         </div>
@@ -292,20 +309,20 @@ create (sushi:Cuisine {name:"Sushi"}), (nyc:City {name:"New York"}),
 
     <slide class="row-fluid">
       <div class="col-sm-12">
-          <font color="red"><h3>CLEANUP</h3></font>
+        <font color="red">
+          <h3>CLEANUP</h3>
+        </font>
         <br />
         <div>
           <h4>Delete Node(Paper ID=1) with all Relationships</h4>
           <div class="listingblock">
-              <div class="content">
-                  <pre mode="cypher"
-                    class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">
+            <div class="content">
+              <pre mode="cypher" class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">
 //Query Nodes Matching ID=6
 MATCH (p:Paper) where ID(p)=6 OPTIONAL MATCH (p)-[r]-() RETURN r,p</code></pre>
-                </div>
+            </div>
             <div class="content">
-              <pre mode="cypher"
-                class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">
+              <pre mode="cypher" class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">
 //DELETE Nodes Matching ID=6
 MATCH (p:Paper) where ID(p)=6 OPTIONAL MATCH (p)-[r]-() DELETE r,p</code></pre>
             </div>
@@ -314,11 +331,11 @@ MATCH (p:Paper) where ID(p)=6 OPTIONAL MATCH (p)-[r]-() DELETE r,p</code></pre>
 
         <div>
           <font color="red">
-          <h4>DELETE ALL</h4></font>
+            <h4>DELETE ALL</h4>
+          </font>
           <div class="listingblock">
             <div class="content">
-              <pre mode="cypher"
-                class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH (n) DETECH DELETE n</code></pre>
+              <pre mode="cypher" class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH (n) DETECH DELETE n</code></pre>
             </div>
           </div>
         </div>

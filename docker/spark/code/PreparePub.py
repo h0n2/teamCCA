@@ -1,3 +1,6 @@
+#  Core Script for creating the Neo4j Nodes, Relationships and Properties
+#  Authored: hcwong2@illinois.edu, manaskm2@illinois.edu, fmc2@illinois.edu, skusuma3@illinois.edu
+
 import os
 os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.3.1 pyspark-shell py2neo'
 
