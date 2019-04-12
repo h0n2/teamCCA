@@ -31,7 +31,8 @@ b. Producer Code:
 ( make sure file exists: project\kafka\data\aminer_papers_0.txt)
 
 ```python
-python project\kafka\producer.py
+cd project\kafka
+python producer.py
 ```
 
 c. Consumer Code: 
@@ -49,8 +50,24 @@ c. Consumer Code:
 
 d.  Visualization:
     
-    Connect to Neo4j browser using http://localhost:7474/browser with username: neo4j and password: password
+    1. Run local http server
+    ```python
+       cd project\guide
+       python http-server.py
+    ```
+    This will be running againist localhost:8081 port pointing to guide folder
+    (Check) Try to navigate http://localhost:8081/AMiner.html
 
+    
+
+    2. Connect to Neo4j browser using http://localhost:7474/browser with username: neo4j and password: password
+        This will load the above AMiner.html tutorial page by default after connecting
+        OR
+        run this code in the query window 
+        ```
+            play: http://localhost:8081/AMiner.html    
+
+        ```
 ```
 Happy Learning Kafka ( Producer, Consumer), Spark-Streaming, Neo4j and binding docker images enables scaling for distributed processing
 ```

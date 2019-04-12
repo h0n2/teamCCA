@@ -1,6 +1,8 @@
 
 .vscode/launch.json
-docker/db/dbms/auth
 *.pyc
 .vscode/settings.json
-docker/db/dbms/auth.ini
+docker/db/dbms/*
+docker/db/data/*
+docker/db/logs/*
+bkp/*

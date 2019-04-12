@@ -96,10 +96,11 @@ def _createKeywords(pub, keywords):
     for kw in keywords:
         #Find keywords  TODO : Check for duplicate on re-run
         matcher = NodeMatcher(graph)
-        #pbNode = matcher.match("KEYWORDS", kw.upper(), name=kw.lower()).first()
-        pbNode = matcher.match("Keywords", kw.lower(), name=kw.lower()).first()
+        #pbNode = matcher.match("Keywords", kw.lower(), name=kw.lower()).first()
+        pbNode = matcher.match("Keywords", name=kw.lower()).first()
         if pbNode == None:
-            pbNode = Node('Keywords', kw.lower(), name=kw.lower())
+            #pbNode = Node('Keywords', kw.lower(), name=kw.lower())
+            pbNode = Node('Keywords',name=kw.lower())
             path_1 = Path(pub, 'CONTAINS', pbNode)
             graph.create(path_1)
         else:

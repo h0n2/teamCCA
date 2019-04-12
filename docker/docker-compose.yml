@@ -8,7 +8,11 @@ services:
     #networks:
       #- neo4j-network
     volumes:
-      - ./db/dbms:/data/dbms
+    #  - ./db/dbms:/data/dbms
+      - ./db/data:/data
+      - ./db/config:/conf
+      - ./db/plugins:/plugins
+      - ./db/logs:/logs
     ports:
     - '7474:7474'
     - '7473:7473'
