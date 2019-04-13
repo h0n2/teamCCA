@@ -66,8 +66,8 @@ d.  Visualization:
         run this code in the query window 
         ```
             play: http://localhost:18001/AMiner.html    
-
         ```
+Notes: If you see that above port is being used and not able to launch above url, then you can change the port in project\guide\http-server.py and launch this from neo4j browser with above command ( play: http://localhost:<port>/AMiner.html ). If you want it automatic launch then you need to update docker\db\config\neo4j.conf and restart the container.
 ```
 Happy Learning Kafka ( Producer, Consumer), Spark-Streaming, Neo4j and binding docker images enables scaling for distributed processing
 ```
