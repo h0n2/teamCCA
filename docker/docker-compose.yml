@@ -6,7 +6,7 @@ version: "3"
 services:
 
   neo4j:
-    image: neo4j:latest
+    image: neo4j:3.5.4
     env_file: neoEnv.env
     #networks:
       #- neo4j-network
@@ -36,7 +36,7 @@ services:
       - '2181'
 
   broker:
-    image: wurstmeister/kafka:latest
+    image: wurstmeister/kafka:2.12-2.1.0
     #hostname: broker
     depends_on:
       - zookeeper
@@ -56,7 +56,7 @@ services:
       #KAFKA_DEFAULT_REPLICATION_FACTOR: 1
 
   sparkMaster:
-    image: gettyimages/spark:latest
+    image: gettyimages/spark:2.4.0-hadoop-3.0
     command: ./bin/spark-class org.apache.spark.deploy.master.Master -i spark-master
     hostname: 'spark-master'
     container_name: 'spark-master'
@@ -81,7 +81,7 @@ services:
     - broker
 
   sparkWorker:
-      image: gettyimages/spark:latest
+      image: gettyimages/spark:2.4.0-hadoop-3.0
       command: ./bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
       hostname: "spark-worker"
       container_name: "spark-worker"
