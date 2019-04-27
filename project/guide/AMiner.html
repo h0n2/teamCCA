@@ -64,7 +64,7 @@
         <div>
           <div class="imageblock" style="float: right">
             <div class="content">
-              <img src="http://localhost:8001/thumb_bigger_formation-neo4j.png" alt="UIUC ProjectLeCloud" height="300">
+              <img src="http://localhost:18001/thumb_bigger_formation-neo4j.png" alt="UIUC ProjectLeCloud" height="300">
             </div>
           </div>
           <div class="paragraph">
@@ -306,6 +306,21 @@ create (sushi:Cuisine {name:"Sushi"}), (nyc:City {name:"New York"}),
       </div>
     </slide>
 
+        <!-- Paper-Author-Paper-Author Relation -->
+        <slide class="row-fluid">
+          <div class="col-sm-12">
+            <h3>Hierarchy based</h3>
+            <br />
+            <div>
+              <h4>Papers-Author</h4>
+              <div class="listingblock">
+                <div class="content">
+                  <pre mode="cypher" class="highlight pre-scrollable code runnable"><code class="cypher language-cypher">MATCH p=(a)-[r:AUTHORED]->(b)-[r2:REFERENCE]-(c)-[r3:AUTHORED]-(d) RETURN p LIMIT 3000</code></pre>
+                </div>
+              </div>
+            </div>
+           </div>
+        </slide>
 
     <slide class="row-fluid">
       <div class="col-sm-12">
