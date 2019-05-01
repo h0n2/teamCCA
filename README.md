@@ -36,7 +36,7 @@ python producer.py
 ```
 
 c. Consumer Code: 
-    Just before running the consumer, run the producer, so that messages are published to Kakfa Queue
+    Just before running the consumer, run the producer, so that messages are published to Kafka Queue
 
   1. Simple Consumer Test: Connect to Spark Master docker and run 
   ```python
@@ -55,7 +55,7 @@ d.  Visualization:
        cd project\guide
        python http-server.py
     ```
-    This will be running againist localhost:8081 port pointing to guide folder
+    This will be running against localhost:8081 port pointing to guide folder
     (Check) Try to navigate http://localhost:18001/AMiner.html
 
     
