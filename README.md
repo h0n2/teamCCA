@@ -109,5 +109,3 @@ Notes: If you see that above port is being used and not able to launch above url
 ```
 Happy Learning Kafka ( Producer, Consumer), Spark-Streaming, Neo4j and binding docker images enables scaling for distributed processing
 ```
-
-## Link to the Paper Published: TBD
