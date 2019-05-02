@@ -22,7 +22,7 @@ docker-compose rm -f
 ## Running Instructions
 There are two modes to run the Producer and Consumer routines:
 * Single topic mode 
-* 2-topic batch mode
+* Two-topic batch mode
 
 Single topic run is the simple mode where the producer pushes the data into Kafka to one Topic ("aminer1").  While in 2-topic mode, the producer pushes the data alternately, per the batch size set, to two topics ("aminer0" and "aminer1"). 
 
@@ -56,10 +56,10 @@ C.i Consumer Code:
   docker exec spark-master bin/spark-submit --verbose --packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.3.1 --master spark://spark-master:7077 /opt/spark/code/consumerSpark.py
   ```
 
-### 2-Topic Mode
+### Two-Topic Mode
 For 2-topic run mode, you must copy the producer_batch.py in the batch_mode folder to the kafka folder.  You also need to copy the consumerSpark.py and consumerSpark2.py in the batch_mode folder to the spark/code folder.
 
-B.i Producer Code: 
+B.ii Producer Code: 
 ( make sure file exists: project\kafka\data\aminer_papers_0.txt)
 
 ```python
@@ -67,7 +67,7 @@ cd project\kafka
 python producer_batch.py
 ```
 
-C.i Consumer Code: 
+C.ii Consumer Code: 
     Just before running the consumer, run the producer, so that messages are published to Kafka Queue.
 
   1. Open up two separate terminal shells.  Now, in the terminal, go to the /spark/code folder.
@@ -79,7 +79,7 @@ C.i Consumer Code:
   docker exec spark-master bin/spark-submit --verbose --packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.3.1 --master spark://spark-master:7077  --executor-memory 1g --num-executors 2 --executor-cores 1 --total-executor-cores 2  /opt/spark/code/consumerSpark.py
 
   ```
-  3. Run Spark Streaming Consumer in the other terminal:
+  3. Run Spark Streaming Consumer 2 in the other terminal:
   ```python
  
   docker exec spark-master bin/spark-submit --verbose --packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.3.1 --master spark://spark-master:7077  --executor-memory 1g --num-executors 2 --executor-cores 1 --total-executor-cores 2  /opt/spark/code/consumerSpark2.py
