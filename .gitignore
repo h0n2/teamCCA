@@ -6,3 +6,4 @@ docker/db/dbms/*
 docker/db/data/*
 docker/db/logs/*
 bkp/*
+*.tar
